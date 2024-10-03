@@ -110,7 +110,6 @@ public class LevelManager : MonoBehaviour
         scenesToLoad.Remove(operation);
         operation.completed -= OperationCompleted;
     }
-
 }
 
 

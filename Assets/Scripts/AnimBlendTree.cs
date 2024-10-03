@@ -19,6 +19,7 @@ public class AnimBlendTree : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        anim.SetFloat("speed", PlayerLocomotionHandler.playerVelocity);
+        Debug.Log(PlayerLocomotionHandler.playerVelocity);
+        anim.SetFloat("Speed", PlayerLocomotionHandler.playerVelocity);
     }
 }

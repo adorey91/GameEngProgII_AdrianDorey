@@ -139,17 +139,4 @@ public class GameStateManager : MonoBehaviour
     {        
         SwitchToState(lastGameState);       
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 }

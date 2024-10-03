@@ -39,13 +39,4 @@ public class GameManager : MonoBehaviour
         if (_levelManager == null) { Debug.LogError("LevelManager is not assigned to GameManager in the inspector!"); }
 
     }   
-
-
-
-
-
-
-
-
-
 }
