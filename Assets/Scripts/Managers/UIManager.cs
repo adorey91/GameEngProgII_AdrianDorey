@@ -107,7 +107,7 @@ public class UIManager : MonoBehaviour
 
     private IEnumerator LoadingUIFadeOut()
     {
-        Debug.Log("Starting Fadeout");
+        //Debug.Log("Starting Fadeout");
 
         float timer = 0;
 
@@ -122,18 +122,18 @@ public class UIManager : MonoBehaviour
         LoadingScreen.SetActive(false);
         loadingBar.fillAmount = 0;
 
-        Debug.Log("Ending Fadeout");
+        //Debug.Log("Ending Fadeout");
     }
 
     private IEnumerator LoadingUIFadeIN()
     {
-        Debug.Log("Starting Fadein");
+        //Debug.Log("Starting Fadein");
         float timer = 0;
         LoadingScreen.SetActive(true);
 
         while (timer < fadeTime)
         {
-            Debug.Log("fading");
+            //Debug.Log("fading");
             loadingScreenCanvasGroup.alpha = Mathf.Lerp(0, 1, timer / fadeTime);
             timer += Time.deltaTime;
             yield return null;
@@ -141,13 +141,13 @@ public class UIManager : MonoBehaviour
 
         loadingScreenCanvasGroup.alpha = 1;
 
-        Debug.Log("Ending Fadein");
+        //Debug.Log("Ending Fadein");
         StartCoroutine(LoadingBarProgress());
     }
 
     private IEnumerator LoadingBarProgress()
     {
-        Debug.Log("Starting Progress Bar");
+        //Debug.Log("Starting Progress Bar");
         while (levelManager.scenesToLoad.Count <= 0)
         {
             //waiting for loading to begin
@@ -159,7 +159,7 @@ public class UIManager : MonoBehaviour
             yield return null;
         }
         yield return new WaitForEndOfFrame();
-        Debug.Log("Ending Progress Bar");
+        //Debug.Log("Ending Progress Bar");
         StartCoroutine(LoadingUIFadeOut());
     }
 

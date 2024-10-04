@@ -20,7 +20,7 @@ BlendTree:
     m_Motion: {fileID: 7400000, guid: b7936854dca61244d9d0b96f0a9b9a83, type: 2}
     m_Threshold: 5
     m_Position: {x: 0, y: 0}
-    m_TimeScale: 1
+    m_TimeScale: 5
     m_CycleOffset: 0
     m_DirectBlendParameter: Idle Walk Run
     m_Mirror: 0
@@ -85,7 +85,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle Walk Run 0
+  m_Name: Regular Idle Walk Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -118,7 +118,7 @@ AnimatorStateMachine:
     m_Position: {x: 360, y: 110, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -3602328388582151211}
-    m_Position: {x: 370, y: 200, z: 0}
+    m_Position: {x: 350, y: 200, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -136,7 +136,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Idle Walk Run
+  m_Name: Zombie Idle Walk Run
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

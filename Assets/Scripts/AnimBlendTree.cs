@@ -13,13 +13,11 @@ public class AnimBlendTree : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         character.SetActive(true);
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        Debug.Log(PlayerLocomotionHandler.playerVelocity);
         anim.SetFloat("Speed", PlayerLocomotionHandler.playerVelocity);
     }
 }
