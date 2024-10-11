@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -27,19 +29,20 @@ public class InputManager : MonoBehaviour
     public bool isPauseKeyPressed = false;
 
 
-    public void HandleAllInputs()
-    {
-        HandleMovementInput();
-        HandleSprintingInput();
-        HandleJumpInput();
-        HandleCameraInput();
-        HandlePauseKeyInput();
-    }
+    //public void HandleAllInputs()
+    //{
+    //    HandleMovementInput();
+    //    HandleJumpInput();
+    //    HandleCameraInput();
+    //    HandlePauseKeyInput();
+    //}
 
-    private void HandleCameraInput()
+    public void Look(InputAction.CallbackContext context)
     {        
+
             // Get mouse input for the camera
-            cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            //cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            cameraInput = context.ReadValue<Vector2>();
 
             // Get scroll input for camera zoom
             scrollInput = Input.GetAxis("Mouse ScrollWheel");
@@ -49,42 +52,33 @@ public class InputManager : MonoBehaviour
             cameraManager.cameraInput = cameraInput;        
     }
 
-    private void HandleMovementInput()
+    public void Move(InputAction.CallbackContext context)
     {
-        movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        movementInput = context.ReadValue<Vector2>();
+        //movementInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         horizontalInput = movementInput.x;
         verticalInput = movementInput.y;
         moveAmount = Mathf.Clamp01(Mathf.Abs(horizontalInput) + Mathf.Abs(verticalInput));
     }
 
-    private void HandlePauseKeyInput()
+    public void Pause(InputAction.CallbackContext context)
     {
-        isPauseKeyPressed = Input.GetKeyDown(KeyCode.Escape); // Detect the escape key press
+        if (context.performed)
+            isPauseKeyPressed = true;
     }
 
-    private void HandleSprintingInput()
+    public void Sprint(InputAction.CallbackContext context)
     {
-        if (Input.GetKey(KeyCode.LeftShift) && moveAmount > 0.5f)
-        {
+        if(context.performed)
             playerLocomotionHandler.isSprinting = true;
-        }
-        else
-        {
+        if(context.canceled)
             playerLocomotionHandler.isSprinting = false;
-        }
     }
 
-    private void HandleJumpInput()
+
+    public void Jump(InputAction.CallbackContext context)
     {
-        jumpInput = Input.GetKeyDown(KeyCode.Space); // Detect jump input (spacebar)
-        if (jumpInput)
-        {
+        if (context.performed)
             playerLocomotionHandler.HandleJump(); // Trigger jump in locomotion handler
-        }
     }
-
-
-
-
-
 }

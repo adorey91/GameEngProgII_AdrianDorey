@@ -47,7 +47,7 @@ public class PlayerManager : MonoBehaviour
  
     void Update()
     {
-        _inputManager.HandleAllInputs();
+        //_inputManager.HandleAllInputs();
         _playerLocomotionHandler.HandleAllPlayerMovement();
     }
 

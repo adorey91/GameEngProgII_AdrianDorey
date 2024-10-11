@@ -26,6 +26,7 @@ public class GameState_GamePlay : IGameState
         if(gameStateManager._inputManager.isPauseKeyPressed)
         {            
             gameStateManager.Pause();
+            gameStateManager._inputManager.isPauseKeyPressed = false;
         }
         
 

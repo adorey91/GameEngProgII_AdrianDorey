@@ -24,6 +24,7 @@ public class GameState_Paused : IGameState
         if (gameStateManager._inputManager.isPauseKeyPressed)
         {
             gameStateManager.UnPause();
+            gameStateManager._inputManager.isPauseKeyPressed = false;
         }
     }
 
