@@ -1755,7 +1755,7 @@ PrefabInstance:
     - target: {fileID: 5697578372536420906, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
       propertyPath: groundFilter.m_Bits
-      value: 512
+      value: 513
       objectReference: {fileID: 0}
     - target: {fileID: 8547344859687847777, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
