@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -28,6 +30,13 @@ public class InputManager : MonoBehaviour
 
     public bool isPauseKeyPressed = false;
 
+    public Camera playerCamera;
+    public LayerMask cubeFilter;
+    public LayerMask groundFilter;
+    public float distance = 10;
+
+    public Renderer targetRenderer;
+
 
     //public void HandleAllInputs()
     //{
@@ -38,18 +47,18 @@ public class InputManager : MonoBehaviour
     //}
 
     public void Look(InputAction.CallbackContext context)
-    {        
+    {
 
-            // Get mouse input for the camera
-            //cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
-            cameraInput = context.ReadValue<Vector2>();
+        // Get mouse input for the camera
+        //cameraInput = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+        cameraInput = context.ReadValue<Vector2>();
 
-            // Get scroll input for camera zoom
-            scrollInput = Input.GetAxis("Mouse ScrollWheel");
+        // Get scroll input for camera zoom
+        scrollInput = Input.GetAxis("Mouse ScrollWheel");
 
-            // Send inputs to CameraManager
-            cameraManager.zoomInput = scrollInput;
-            cameraManager.cameraInput = cameraInput;        
+        // Send inputs to CameraManager
+        cameraManager.zoomInput = scrollInput;
+        cameraManager.cameraInput = cameraInput;
     }
 
     public void Move(InputAction.CallbackContext context)
@@ -69,9 +78,9 @@ public class InputManager : MonoBehaviour
 
     public void Sprint(InputAction.CallbackContext context)
     {
-        if(context.performed)
+        if (context.performed)
             playerLocomotionHandler.isSprinting = true;
-        if(context.canceled)
+        if (context.canceled)
             playerLocomotionHandler.isSprinting = false;
     }
 
@@ -80,5 +89,50 @@ public class InputManager : MonoBehaviour
     {
         if (context.performed)
             playerLocomotionHandler.HandleJump(); // Trigger jump in locomotion handler
+    }
+
+    public void Fire(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            RaycastHit hit;
+
+            // // origin -> direction -> output variable -> max distance
+            // if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10, cubeFilter.value))
+            // {
+            //     if (hit.collider.TryGetComponent(out Renderer renderer))
+            //     {
+            //         if (renderer.material.color == Color.blue)
+            //             renderer.material.color = Color.red;
+            //         else
+            //             renderer.material.color = Color.blue;
+            //     }
+            // }
+
+            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, groundFilter.value))
+            {
+                distance = hit.distance;
+            }
+
+            RaycastHit[] hits = Physics.RaycastAll(playerCamera.transform.position, playerCamera.transform.forward, distance, cubeFilter.value);
+            foreach (RaycastHit hit2 in hits)
+            {
+                if (hit2.collider.TryGetComponent(out Renderer renderer))
+                {
+                    targetRenderer = renderer;
+                        targetRenderer.material.color = Color.red;
+                }
+            }
+        }
+    }
+
+    public void FixedUpdate()
+    {
+        RaycastHit hit;
+
+        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, cubeFilter.value))
+        {
+            targetRenderer.material.color = Color.blue;
+        }
     }
 }
