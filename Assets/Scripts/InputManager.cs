@@ -130,9 +130,10 @@ public class InputManager : MonoBehaviour
     {
         RaycastHit hit;
 
-        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, cubeFilter.value))
+        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, cubeFilter.value) && targetRenderer != null)
         {
             targetRenderer.material.color = Color.blue;
+            targetRenderer = null;
         }
     }
 }
