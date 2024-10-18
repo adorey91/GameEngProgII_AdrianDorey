@@ -35,7 +35,8 @@ public class InputManager : MonoBehaviour
     public LayerMask groundFilter;
     public float distance = 10;
 
-    public Renderer targetRenderer;
+    private Renderer targetRenderer;
+    private Color originalColor;
 
 
     //public void HandleAllInputs()
@@ -95,19 +96,8 @@ public class InputManager : MonoBehaviour
     {
         if (context.performed)
         {
+            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.magenta, 1f);
             RaycastHit hit;
-
-            // // origin -> direction -> output variable -> max distance
-            // if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 10, cubeFilter.value))
-            // {
-            //     if (hit.collider.TryGetComponent(out Renderer renderer))
-            //     {
-            //         if (renderer.material.color == Color.blue)
-            //             renderer.material.color = Color.red;
-            //         else
-            //             renderer.material.color = Color.blue;
-            //     }
-            // }
 
             if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, groundFilter.value))
             {
@@ -119,8 +109,15 @@ public class InputManager : MonoBehaviour
             {
                 if (hit2.collider.TryGetComponent(out Renderer renderer))
                 {
+                    if (originalColor.Equals(renderer.material.color) && renderer != targetRenderer)
+                        originalColor = renderer.material.color;
+
                     targetRenderer = renderer;
-                        targetRenderer.material.color = Color.red;
+
+                    targetRenderer.material.color = Color.red;
+
+                    Debug.Log(hit2.collider.name);
+                    Debug.Log(hit2.distance);
                 }
             }
         }
@@ -132,7 +129,7 @@ public class InputManager : MonoBehaviour
 
         if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, cubeFilter.value) && targetRenderer != null)
         {
-            targetRenderer.material.color = Color.blue;
+            targetRenderer.material.color = originalColor;
             targetRenderer = null;
         }
     }
