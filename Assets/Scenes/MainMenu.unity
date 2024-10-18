@@ -1757,6 +1757,66 @@ PrefabInstance:
       propertyPath: groundFilter.m_Bits
       value: 513
       objectReference: {fileID: 0}
+    - target: {fileID: 7080073777982698874, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Text
+      value: Press Left Mouse Key to fire at cubes
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080073777982698874, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080073777982698874, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.306108
+      objectReference: {fileID: 0}
+    - target: {fileID: 7080073777982698874, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_Pivot.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 8054703994157374712, guid: e778663d324e19a48ab9d91fcd9af8f9,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -100
+      objectReference: {fileID: 0}
     - target: {fileID: 8547344859687847777, guid: e778663d324e19a48ab9d91fcd9af8f9,
         type: 3}
       propertyPath: m_AnchorMax.y
