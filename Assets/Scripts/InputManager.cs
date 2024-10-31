@@ -36,7 +36,7 @@ public class InputManager : MonoBehaviour
     public float distance = 10;
 
     private Renderer targetRenderer;
-    private Color originalColor;
+    [SerializeField] private Color originalColor;
 
 
     //public void HandleAllInputs()
