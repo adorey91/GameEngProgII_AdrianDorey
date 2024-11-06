@@ -31,6 +31,7 @@ public class UIManager : MonoBehaviour
     public Image loadingBar;
     public TextMeshProUGUI loadingText;
     public float fadeTime = 0.5f;
+    public Text gameplayMessage;
 
     public void UpdateLevelCount(int count)
     {
@@ -168,5 +169,10 @@ public class UIManager : MonoBehaviour
         yield return new WaitForSeconds(time);
         DisableAllUIPanels();
         uiPanel.SetActive(true);
+    }
+
+    public void UpdateGameplayMessage(string message)
+    {
+        gameplayMessage.text = message;
     }
 }

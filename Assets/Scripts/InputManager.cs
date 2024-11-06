@@ -1,10 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
-using UnityEngine.UIElements;
 
 // Sam Robichaud 
 // NSCC Truro 2024
@@ -15,6 +12,7 @@ public class InputManager : MonoBehaviour
     // Script References
     [SerializeField] private PlayerLocomotionHandler playerLocomotionHandler;
     [SerializeField] private CameraManager cameraManager; // Reference to CameraManager
+    [SerializeField] private UIManager uiManager;
 
 
     [Header("Movement Inputs")]
@@ -30,7 +28,7 @@ public class InputManager : MonoBehaviour
 
     public bool isPauseKeyPressed = false;
 
-    public Camera playerCamera;
+    public Camera playerCam;
     public LayerMask cubeFilter;
     public LayerMask groundFilter;
     public float distance = 10;
@@ -38,6 +36,9 @@ public class InputManager : MonoBehaviour
     private Renderer targetRenderer;
     [SerializeField] private Color originalColor;
 
+    [SerializeField] private GameObject target;
+    [SerializeField] private Interactable targetInteractable;
+    [SerializeField] private bool interactionPossible;
 
     //public void HandleAllInputs()
     //{
@@ -46,6 +47,34 @@ public class InputManager : MonoBehaviour
     //    HandleCameraInput();
     //    HandlePauseKeyInput();
     //}
+
+    private void Update()
+    {
+        if (target != null)
+            interactionPossible = true;
+        else
+            interactionPossible = false;
+    }
+
+    private void FixedUpdate()
+    {
+        if (Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out RaycastHit hit, distance))
+        {
+            if (hit.transform.gameObject.CompareTag("Interactable"))
+            {
+                target = hit.transform.gameObject;
+                targetInteractable = target.GetComponent<Interactable>();
+            }
+
+            SetGameplayMessage();
+        }
+        else
+        {
+            target = null;
+            targetInteractable = null;
+        }
+    }
+
 
     public void Look(InputAction.CallbackContext context)
     {
@@ -94,17 +123,29 @@ public class InputManager : MonoBehaviour
 
     public void Fire(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        RaycastHit hit;
+
+        if (context.performed & interactionPossible)
         {
-            Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.magenta, 1f);
-            RaycastHit hit;
-
-            if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, groundFilter.value))
+            switch (targetInteractable.type)
             {
-                distance = hit.distance;
+                case Interactable.InteractionType.Door: target.SetActive(false); break;
+                case Interactable.InteractionType.Button:
+                    if (!targetInteractable.activated)
+                    {
+                        target.transform.localScale = new Vector3(1f, 0.5f, 1f);
+                        targetInteractable.activated = true;
+                    }
+                    break;
+                case Interactable.InteractionType.Pickup: target.SetActive(false); break;
             }
+        }
 
-            RaycastHit[] hits = Physics.RaycastAll(playerCamera.transform.position, playerCamera.transform.forward, distance, cubeFilter.value);
+        if (context.performed & Physics.Raycast(playerCam.transform.position, playerCam.transform.forward, out hit, 15, groundFilter.value))
+        {
+            distance = hit.distance;
+
+            RaycastHit[] hits = Physics.RaycastAll(playerCam.transform.position, playerCam.transform.forward, distance, cubeFilter.value);
             foreach (RaycastHit hit2 in hits)
             {
                 if (hit2.collider.TryGetComponent(out Renderer renderer))
@@ -121,16 +162,50 @@ public class InputManager : MonoBehaviour
                 }
             }
         }
+        //Debug.DrawLine(playerCamera.transform.position, playerCamera.transform.forward, Color.magenta, 1f);
+        //RaycastHit hit;
+
+        //if (Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, groundFilter.value))
+        //{
+        //    distance = hit.distance;
+        //}
+
+        //RaycastHit[] hits = Physics.RaycastAll(playerCamera.transform.position, playerCamera.transform.forward, distance, cubeFilter.value);
+        //foreach (RaycastHit hit2 in hits)
+        //{
+        //    if (hit2.collider.TryGetComponent(out Renderer renderer))
+        //    {
+        //        if (originalColor.Equals(renderer.material.color) && renderer != targetRenderer)
+        //            originalColor = renderer.material.color;
+
+        //        targetRenderer = renderer;
+
+        //        targetRenderer.material.color = Color.red;
+
+        //        Debug.Log(hit2.collider.name);
+        //        Debug.Log(hit2.distance);
+        //    }
+        //}
+
     }
 
-    public void FixedUpdate()
-    {
-        RaycastHit hit;
 
-        if (!Physics.Raycast(playerCamera.transform.position, playerCamera.transform.forward, out hit, 15, cubeFilter.value) && targetRenderer != null)
+    private void SetGameplayMessage()
+    {
+        string message = null;
+        if (targetInteractable != null)
         {
-            targetRenderer.material.color = originalColor;
-            targetRenderer = null;
+            switch (targetInteractable.type)
+            {
+                case Interactable.InteractionType.Door: message = "Press LMB to open door"; break;
+                case Interactable.InteractionType.Button: 
+                    if(!targetInteractable.activated)
+                        message = "Press LMB to activate "; 
+                    break;
+                case Interactable.InteractionType.Pickup: message = "Press LMB to activate"; break;
+                default: message = null; break;
+            }
         }
+        uiManager.UpdateGameplayMessage(message);
     }
 }

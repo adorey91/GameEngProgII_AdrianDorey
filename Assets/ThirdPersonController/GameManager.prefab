@@ -98,10 +98,10 @@ RectTransform:
   - {fileID: 8001872553473318442}
   m_Father: {fileID: 179376508704023072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -375}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6539717242873870816
 CanvasRenderer:
@@ -516,10 +516,10 @@ RectTransform:
   - {fileID: 5201718075003549428}
   m_Father: {fileID: 179376508704023072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -45}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4434382155577904323
 CanvasRenderer:
@@ -1071,6 +1071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLocomotionHandler: {fileID: 515732063566655833}
   cameraManager: {fileID: 725711720319384260}
+  uiManager: {fileID: 393610008284620649}
   verticalInput: 0
   horizontalInput: 0
   jumpInput: 0
@@ -1079,6 +1080,18 @@ MonoBehaviour:
   scrollInput: 0
   cameraInput: {x: 0, y: 0}
   isPauseKeyPressed: 0
+  playerCam: {fileID: 7852501862026054370}
+  cubeFilter:
+    serializedVersion: 2
+    m_Bits: 128
+  groundFilter:
+    serializedVersion: 2
+    m_Bits: 513
+  distance: 10
+  originalColor: {r: 0, g: 0.023826122, b: 1, a: 1}
+  target: {fileID: 0}
+  targetInteractable: {fileID: 0}
+  interactionPossible: 0
 --- !u!114 &5188439224303654330
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,13 +1120,13 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625125363580622106}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Move
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1123,13 +1136,13 @@ MonoBehaviour:
     m_ActionName: Player/Move[/Keyboard/w,/Keyboard/upArrow,/Keyboard/s,/Keyboard/downArrow,/Keyboard/a,/Keyboard/leftArrow,/Keyboard/d,/Keyboard/rightArrow]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625125363580622106}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Look
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1139,13 +1152,13 @@ MonoBehaviour:
     m_ActionName: Player/Look[/Mouse/delta,/Pen/delta]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625125363580622106}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Jump
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1154,18 +1167,30 @@ MonoBehaviour:
     m_ActionId: 9ebe1eea-a9ef-47d6-959a-2409573b84cb
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Fire
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 7ac72f4a-e7ca-4858-85b2-cd6b6c39263c
     m_ActionName: Player/Fire[/Mouse/leftButton]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625125363580622106}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Pause
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1175,13 +1200,13 @@ MonoBehaviour:
     m_ActionName: Player/Pause[/Keyboard/escape]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1625125363580622106}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
-        m_Mode: 1
+      - m_Target: {fileID: 5697578372536420906}
+        m_TargetAssemblyTypeName: InputManager, Assembly-CSharp
+        m_MethodName: Sprint
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
@@ -1229,6 +1254,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 358a05de-38be-4bec-9eef-32da4c226fe3
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: InteractionManager, Assembly-CSharp
+        m_MethodName: Interact
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 44415ea4-90ba-4145-a74a-45bfbd013eb3
+    m_ActionName: Player/Interact[/Keyboard/enter]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1328,7 +1369,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &496946665803302036
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2815,6 +2856,7 @@ MonoBehaviour:
   loadingBar: {fileID: 7465482653788466984}
   loadingText: {fileID: 2554272729470521169}
   fadeTime: 0.5
+  gameplayMessage: {fileID: 7080073777982698874}
 --- !u!1 &4519553158357465362
 GameObject:
   m_ObjectHideFlags: 0
@@ -3811,6 +3853,7 @@ GameObject:
   - component: {fileID: 1308513348906308259}
   - component: {fileID: 515732063566655833}
   - component: {fileID: 322026907196466210}
+  - component: {fileID: 4591381026335995172}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -3904,6 +3947,22 @@ CharacterController:
   m_SkinWidth: 0.01
   m_MinMoveDistance: 0.00001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4591381026335995172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7034935583075056663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05abec8b0a8fb3141a29269764bbf75c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCamera: {fileID: 7852501862026054370}
+  cubeFilter:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &7223833058263259775
 GameObject:
   m_ObjectHideFlags: 0
@@ -4537,10 +4596,10 @@ RectTransform:
   - {fileID: 9022749875471197190}
   m_Father: {fileID: 179376508704023072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -265}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7764700396764103909
 CanvasRenderer:
@@ -5183,11 +5242,11 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 7875161779586829679}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 398.2327}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -100}
   m_SizeDelta: {x: 500, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &1422762483517622881
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5209,7 +5268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 0, g: 0.306108, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5229,7 +5288,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Put Gameplay Message Here
+  m_Text: Press Left Mouse Key to fire at cubes
 --- !u!1 &8499861076685850264
 GameObject:
   m_ObjectHideFlags: 0
@@ -5461,10 +5520,10 @@ RectTransform:
   - {fileID: 5259941112965107729}
   m_Father: {fileID: 179376508704023072}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 150, y: -155}
+  m_SizeDelta: {x: 300, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1845516923834042432
 CanvasRenderer:
@@ -6134,7 +6193,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 0dee610af3459614cbf62c5478e7e726,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 0dee610af3459614cbf62c5478e7e726,
         type: 3}
