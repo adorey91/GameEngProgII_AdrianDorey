@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     public bool activated;
     public void Activate()
     {
-        Debug.Log(this.name + type + "was activated");
+        Debug.Log($"{type} was activated");
+        activated = true;
     }
 }

@@ -134,10 +134,16 @@ public class InputManager : MonoBehaviour
                     if (!targetInteractable.activated)
                     {
                         target.transform.localScale = new Vector3(1f, 0.5f, 1f);
-                        targetInteractable.activated = true;
+                        targetInteractable.Activate();
                     }
                     break;
-                case Interactable.InteractionType.Pickup: target.SetActive(false); break;
+                case Interactable.InteractionType.Pickup:
+                    if (!targetInteractable.activated)
+                    {
+                        target.SetActive(false);
+                        targetInteractable.Activate();
+                    }
+                    break;
             }
         }
 
@@ -186,7 +192,6 @@ public class InputManager : MonoBehaviour
         //        Debug.Log(hit2.distance);
         //    }
         //}
-
     }
 
 
@@ -198,9 +203,9 @@ public class InputManager : MonoBehaviour
             switch (targetInteractable.type)
             {
                 case Interactable.InteractionType.Door: message = "Press LMB to open door"; break;
-                case Interactable.InteractionType.Button: 
-                    if(!targetInteractable.activated)
-                        message = "Press LMB to activate "; 
+                case Interactable.InteractionType.Button:
+                    if (!targetInteractable.activated)
+                        message = "Press LMB to activate ";
                     break;
                 case Interactable.InteractionType.Pickup: message = "Press LMB to activate"; break;
                 default: message = null; break;
