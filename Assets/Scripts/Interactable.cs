@@ -8,9 +8,19 @@ public class Interactable : MonoBehaviour
 
     public InteractionType type;
     public bool activated;
+
+    public PickUp pickUpItem;
     public void Activate()
     {
-        Debug.Log($"{type} was activated");
         activated = true;
+        
+        if (type == InteractionType.Pickup)
+        {
+            pickUpItem.PickUpItem();
+        }
+        else
+        {
+            Debug.Log($"{type} was activated");
+        }
     }
 }

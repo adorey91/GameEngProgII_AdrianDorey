@@ -1027,6 +1027,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!1 &84181711
 GameObject:
   m_ObjectHideFlags: 0
@@ -2437,6 +2439,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  activated: 0
+  pickUpItem: {fileID: 11400000, guid: 8dcdae8fdcbadb34a8e1336747b10252, type: 2}
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -4919,6 +4923,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 2
+  activated: 0
+  pickUpItem: {fileID: 11400000, guid: cab520cc683b09549a453db4494b69a1, type: 2}
 --- !u!65 &931489866
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5337,6 +5343,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!65 &1017651522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6285,6 +6293,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!1 &1218977019
 GameObject:
   m_ObjectHideFlags: 0
@@ -14792,6 +14802,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!1 &1583253799
 GameObject:
   m_ObjectHideFlags: 0
@@ -17784,6 +17796,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!1 &1909288072
 GameObject:
   m_ObjectHideFlags: 0
@@ -18954,6 +18968,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
+  activated: 0
+  pickUpItem: {fileID: 0}
 --- !u!1 &2090354998
 GameObject:
   m_ObjectHideFlags: 0
