@@ -1,0 +1,10 @@
+{
+    "lang": "fr",
+    "translations": {
+        "title": "Titre du Jeu",
+        "play": "Jouer",
+        "quit": "Quitter",
+        "options": "Options",
+        "credits": "Crédits"
+    }
+}

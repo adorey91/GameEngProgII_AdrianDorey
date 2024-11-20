@@ -1,0 +1,10 @@
+{
+    "lang": "en",
+    "translations": {
+        "title": "Game Title",
+        "play": "Play",
+        "quit": "Quit",
+        "options": "Options",
+        "credits": "Credits"
+    }
+}
